@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../src/libs/file_helper.c \
 ../src/libs/parser.c \
 ../src/libs/sb_util.c 
 
 OBJS += \
+./src/libs/file_helper.o \
 ./src/libs/parser.o \
 ./src/libs/sb_util.o 
 
 C_DEPS += \
+./src/libs/file_helper.d \
 ./src/libs/parser.d \
 ./src/libs/sb_util.d 
 

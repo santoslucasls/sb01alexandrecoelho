@@ -12,8 +12,15 @@
 #define TIPO_DE_INSTR_NORMAL = 0
 #define TIPO_DE_INSTR_DIRTVA = 1
 
+typedef struct label_code {
+	char* label_name;
+	int label_addr;
+} pair_label_code_addr;
 
-
+typedef struct label_data {
+	char* label_name;
+	int label_addr;
+} pair_label_data_addr;
 
 
 typedef struct instrucao_tipica {
@@ -25,11 +32,19 @@ typedef struct instrucao_tipica {
 	int* cod;
 	int tamanho;
 	int qtd_op;
-
+	int addr;
 	int type;
+
+	pair_label_code_addr* label_code;
+	pair_label_data_addr* label_data;
 
 } instruction;
 
+
+
 instruction* str_to_instrction(char *str);
+
+
+
 
 #endif /* PARSER_H_ */

@@ -1,15 +1,23 @@
 /* strtok example */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "includes/parser.h"
+#include "includes/file_helper.h"
 
 
 int main ()
 {
-  char str[] ="INPUT N1";
-  instruction* inst = str_to_instrction(str);
-  printf("\nmm %s, op1 %s, op2 %s, op3 %s", inst->mnemonico, inst->op1, inst->op2, inst->op3);
+	FILE * fp;
+	fp = open_file("/Users/lucas/prog_in");
+
+	if (fp == NULL )
+		exit(EXIT_FAILURE);
+	if (decode_file(fp)) {
+
+		return EXIT_SUCCESS;
+	}
 
   return 0;
 }
