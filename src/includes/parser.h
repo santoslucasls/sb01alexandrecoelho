@@ -15,11 +15,15 @@
 typedef struct label_code {
 	char* label_name;
 	int label_addr;
+
+	struct label_code* next;
 } pair_label_code_addr;
 
 typedef struct label_data {
 	char* label_name;
 	int label_addr;
+
+	struct label_data* next;
 } pair_label_data_addr;
 
 
@@ -34,9 +38,10 @@ typedef struct instrucao_tipica {
 	int qtd_op;
 	int addr;
 	int type;
-
 	pair_label_code_addr* label_code;
 	pair_label_data_addr* label_data;
+
+	struct instrucao_tipica* next;
 
 } instruction;
 

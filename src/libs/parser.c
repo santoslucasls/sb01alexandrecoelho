@@ -124,17 +124,25 @@ instruction* decode_mnemonic_instruction(char** tokens) {
 	int count = 0;
 
 	tokens_tmp = tokens;
-	inst->mnemonico = *tokens_tmp;
+
+	inst->mnemonico = (char*)malloc(sizeof(strlen(*tokens_tmp)*sizeof(char)));
+	strcpy(inst->mnemonico,*tokens_tmp);
+
 	prepair_instruct_by_minemonic(&inst);
 
 	int i;
 	for (i = 1; i <= inst->qtd_op; i++) {
 		if (i == 1) {
-			inst->op1 = *(tokens_tmp + 1);
+
+			inst->op1 = (char*)malloc(sizeof(strlen(*(tokens_tmp + i))*sizeof(char)));
+			strcpy(inst->op1,*(tokens_tmp + i));
+
 		} else if (i == 2) {
-			inst->op2 = *(tokens_tmp + 2);
+			inst->op2 = (char*)malloc(sizeof(strlen(*(tokens_tmp + i))*sizeof(char)));
+			strcpy(inst->op2,*(tokens_tmp + i));
 		} else if (i == 3) {
-			inst->op2 = *(tokens_tmp + 3);
+			inst->op3 = (char*)malloc(sizeof(strlen(*(tokens_tmp + i))*sizeof(char)));
+			strcpy(inst->op2,*(tokens_tmp + i));
 		}
 	}
 
@@ -174,21 +182,6 @@ instruction* make_instruction(char** tokens) {
 	return NULL ;
 }
 
-char* clean_comment(char *str) {
-	char* str_tmp;
-	str_tmp = str;
-
-	while (*str_tmp) {
-		if (*str_tmp == ';') {
-			*str_tmp = '\0';
-			break;
-		}
-		str_tmp++;
-	}
-
-	return str;
-}
-
 instruction* str_to_instrction(char *str1) {
 
 	char* pch;
@@ -196,7 +189,6 @@ instruction* str_to_instrction(char *str1) {
 	char** all_tokens_tmp;
 
 	printf("%s\n",str1);
-	clean_comment(str1);
 
 	pch = strtok(str1, separatorns);
 
